@@ -1,0 +1,22 @@
+Package: MultitrophicFun
+Title: Different functions for working with multitrophic communities
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "David",
+           family = "Garcia-Callejas",
+           role = c("aut", "cre"),
+           email = "david.garcia.callejas@gmail.com",
+           comment = c(ORCID = "0000-0001-6982-476X"))
+Description: Different functions for working with multitrophic communities
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports: 
+    Matrix,
+    bdsmatrix,
+    corpcor,
+    dplyr,
+    mvtnorm,
+    stats
