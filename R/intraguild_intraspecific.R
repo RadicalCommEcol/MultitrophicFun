@@ -1,5 +1,5 @@
 #' species-level metrics
-#' 
+#'
 #' different functions with the same structure, metric is in function name
 #'
 #' @param A interaction matrix
@@ -7,13 +7,11 @@
 #'
 #' @return dataframe
 #' @export
-#'
-#' @examples
 intraguild_intraspecific <- function(A, sp.names){
-  
-  result <- data.frame(sp = rownames(A), 
+
+  result <- data.frame(sp = rownames(A),
                        value = diag(A), row.names = NULL)
-  
+
   return(result)
 
 }

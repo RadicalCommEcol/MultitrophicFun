@@ -1,5 +1,5 @@
 #' complete vector space base
-#' 
+#'
 #' complete the base of the vector space for a square matrix, by
 #' adding independent columns to it. New columns are denoted by I_1 to I_N
 #'
@@ -8,8 +8,6 @@
 #'
 #' @return square matrix
 #' @export
-#' 
-#' @examples
 independent_base <- function(P1,noise.threshold){
     q <- Matrix::qr(P1)
     result <- P1[,q$pivot[seq(q$rank)]]
@@ -17,7 +15,7 @@ independent_base <- function(P1,noise.threshold){
     counter <- 1
     for(i in 1:dim(P1)[1]){
         aux=rep(0,dim(P1)[1])
-        aux[i] <- runif(1,noise.threshold[1],noise.threshold[2])
+        aux[i] <- stats::runif(1,noise.threshold[1],noise.threshold[2])
         cbind(result,aux)
         if((Matrix::rankMatrix(result) < Matrix::rankMatrix(cbind(result,aux))) &
            (Matrix::rankMatrix(result)<dim(P1)[1])){
@@ -27,4 +25,4 @@ independent_base <- function(P1,noise.threshold){
         }
     }
     return (result)
-} 
+}

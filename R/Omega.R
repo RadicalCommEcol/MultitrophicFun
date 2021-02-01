@@ -7,10 +7,8 @@
 #'
 #' @param alpha interaction matrix
 #'
-#' @return
+#' @return numeric value
 #' @export
-#'
-#' @examples
 Omega <- function(alpha) {
   S <- nrow(alpha)
   omega <- function(S, Sigma) {

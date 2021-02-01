@@ -1,6 +1,6 @@
 
 #' species-level metrics
-#' 
+#'
 #' different functions with the same structure, metric is in function name
 #'
 #' @param A interaction matrix
@@ -8,18 +8,16 @@
 #'
 #' @return dataframe
 #' @export
-#'
-#' @examples
 interguild_in_strength <- function(A, sp.names){
-  
-  result <- data.frame(sp = rownames(A), 
+
+  result <- data.frame(sp = rownames(A),
                        value = NA_real_,
                        stringsAsFactors = FALSE)
-  
+
   plant.pos <- which(rownames(A) %in% sp.names[[1]]$plants)
   fv.pos <- which(rownames(A) %in% sp.names[[1]]$floral.visitors)
   herb.pos <- which(rownames(A) %in% sp.names[[1]]$herbivores)
-  
+
   for(i.sp in 1:nrow(A)){
     if(result$sp[i.sp] %in% sp.names[[1]]$plants){
       result$value[i.sp] <- sum(A[i.sp,c(herb.pos,fv.pos)])
@@ -30,7 +28,7 @@ interguild_in_strength <- function(A, sp.names){
     }
 
   }# for i.sp
-  
+
   return(result)
 
 }

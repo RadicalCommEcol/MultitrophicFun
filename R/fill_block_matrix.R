@@ -13,8 +13,6 @@
 #'
 #' @return a filled block matrix of the same dimensions as block.matrix
 #' @export
-#'
-#' @examples
 fill_block_matrix <- function(block.matrix,
                               pp.matrix = NA,
                               ph.matrix = NA,
@@ -22,30 +20,30 @@ fill_block_matrix <- function(block.matrix,
                               fv.overlap.matrix = NA,
                               h.overlap.matrix = NA,
                               switch.herb.sign = TRUE){
-  
+
   result.matrix <- block.matrix
-  
+
   all.names <- rownames(block.matrix)
   plant.names <- rownames(pp.matrix)
   plant.in.herb.names <- rownames(ph.matrix)
   plant.in.fv.names <- rownames(pfv.matrix)
   herb.names <- colnames(ph.matrix)
   fv.names <- colnames(pfv.matrix)
-  
+
   for(i.row in 1:nrow(result.matrix)){
     for(i.col in 1:ncol(result.matrix)){
-      
+
       # row in plants
       if(all.names[i.row] %in% plant.names){
         # col in plants
         if(all.names[i.col] %in% plant.names){
-         
+
           # plant-plant
           result.matrix[i.row,i.col] <- pp.matrix[all.names[i.row],
                                                  all.names[i.col]]
-          
+
         }else if(all.names[i.col] %in% herb.names){
-          
+
           # plant-herb
           # further check whether this plant is in the ph matrix
           if(all.names[i.row] %in% plant.in.herb.names){
@@ -54,9 +52,9 @@ fill_block_matrix <- function(block.matrix,
           }else{
             result.matrix[i.row,i.col] <- 0
           }
-          
+
         }else if(all.names[i.col] %in% fv.names){
-          
+
           # plant-floral visitor
           # further check whether this plant is in the pfv matrix
           if(all.names[i.row] %in% plant.in.fv.names){
@@ -65,12 +63,12 @@ fill_block_matrix <- function(block.matrix,
           }else{
             result.matrix[i.row,i.col] <- 0
           }
-          
+
         }
       }else if(all.names[i.row] %in% herb.names){
 
         if(all.names[i.col] %in% plant.names){
-          
+
           # herb-plant
           # further check whether this plant is in the ph matrix
           if(all.names[i.col] %in% plant.in.herb.names){
@@ -85,23 +83,23 @@ fill_block_matrix <- function(block.matrix,
           }else{
             result.matrix[i.row,i.col] <- 0
           }
-          
+
         }else if(all.names[i.col] %in% herb.names){
-          
+
           # herb-herb
           result.matrix[i.row,i.col] <- h.overlap.matrix[all.names[i.row],
                                                  all.names[i.col]]
-          
+
         }else if(all.names[i.col] %in% fv.names){
-          
+
           # herb-fv
           result.matrix[i.row,i.col] <- 0
-          
+
         }
       }else if(all.names[i.row] %in% fv.names){
-        
+
         if(all.names[i.col] %in% plant.names){
-        
+
           # fv-plant
           # further check whether this plant is in the pfv matrix
           if(all.names[i.col] %in% plant.in.fv.names){
@@ -112,21 +110,21 @@ fill_block_matrix <- function(block.matrix,
           }
 
         }else if(all.names[i.col] %in% herb.names){
-          
+
           # fv-herb
           result.matrix[i.row,i.col] <- 0
-          
+
         }else if(all.names[i.col] %in% fv.names){
-          
+
           # fv-fv
           result.matrix[i.row,i.col] <- fv.overlap.matrix[all.names[i.row],
                                                          all.names[i.col]]
         }# if-else col
       }# if-else row
-      
+
     }# for i.col
   }# for i.row
-  
+
   return(result.matrix)
-  
+
 }

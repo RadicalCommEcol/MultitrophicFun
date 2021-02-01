@@ -13,8 +13,6 @@
 #'
 #' @return dataframe
 #' @export
-#'
-#' @examples
 species_metrics <- function(A,
                             metrics = c("intraguild_out_strength",
                                         "interguild_out_strength",

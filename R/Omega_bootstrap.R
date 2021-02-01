@@ -8,8 +8,6 @@
 #'
 #' @return normalized feasibility
 #' @export
-#'
-#' @examples
 Omega_bootstrap <- function(alpha, replicates = 1e2) {
 
   # helper functions
