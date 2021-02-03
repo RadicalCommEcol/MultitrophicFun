@@ -4,11 +4,15 @@
 #'
 #' @param interaction.matrix interaction matrix
 #' @param quant whether to calculate quantitative connectance after LDq' in Banasek-Richter et al. 2009
+#' @param structural_zeros optional dataframe or matrix with two columns, giving 1) the rows and 2) the columns
+#' of positions which are structural zeros (or 'forbidden links') that should not be considered
+#' in the calculation
 #'
 #' @return connectance value (0-1)
 #' @export
 connectance <- function(interaction.matrix,
-                        quant = FALSE){
+                        quant = FALSE,
+                        structural_zeros = NULL){
 
   # auxiliary function
   hill.diversity <- function(abundances,q = 1){
@@ -31,7 +35,11 @@ connectance <- function(interaction.matrix,
   num.sp <- nrow(interaction.matrix)
 
   # this accomodates bipartite and unipartite matrices
-  den <- nrow(interaction.matrix) * ncol(interaction.matrix)
+  # substract structural zeros
+  sz <- ifelse(!is.null(structural_zeros),nrow(structural_zeros),0)
+
+  den <- nrow(interaction.matrix) * ncol(interaction.matrix) - sz
+
   if(quant){
     # after LDq' in Banasek-Richter et al. 2009
 

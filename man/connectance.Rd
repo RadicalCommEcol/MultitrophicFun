@@ -4,12 +4,16 @@
 \alias{connectance}
 \title{connectance function for unipartite or bipartite matrices}
 \usage{
-connectance(interaction.matrix, quant = FALSE)
+connectance(interaction.matrix, quant = FALSE, structural_zeros = NULL)
 }
 \arguments{
 \item{interaction.matrix}{interaction matrix}
 
 \item{quant}{whether to calculate quantitative connectance after LDq' in Banasek-Richter et al. 2009}
+
+\item{structural_zeros}{optional dataframe or matrix with two columns, giving 1) the rows and 2) the columns
+of positions which are structural zeros (or 'forbidden links') that should not be considered
+in the calculation}
 }
 \value{
 connectance value (0-1)
