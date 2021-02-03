@@ -37,7 +37,7 @@ lr_modularity <- function(g,
                           weights = NULL) {
 
   # check args
-  if (!is.igraph(g))
+  if (!igraph::is.igraph(g))
     stop('graph is not an i.graph object')
 
   if (damping > 1 | damping < 0)
@@ -47,14 +47,14 @@ lr_modularity <- function(g,
   pr.algo <- match.arg(pr.algo, c('prpack','arpack','power'))
 
   # no of nodes
-  n <- vcount(g)
+  n <- igraph::vcount(g)
   # node sequence
   v.seq <- seq_len(n)
 
   # get membership vector
   if (class(partition) == 'communities') {
 
-    pp <- membership(partition)
+    pp <- igraph::membership(partition)
 
   } else {
 
@@ -72,34 +72,34 @@ lr_modularity <- function(g,
   if (is.vector(weights) & length(weights) > 1) {
 
     # check args
-    if (ecount(g) != length(weights))
+    if (igraph::ecount(g) != length(weights))
       stop("'weights' differes in length from ecount!")
     if (!is.numeric(weights))
       stop("'weights' must be 'NA','NULL', or a numeric vector!")
 
-    edge_attr(g, 'tmp') <- weights
-    A <- get.adjacency(g, type = 'both', attr = 'tmp')
+    igraph::edge_attr(g, 'tmp') <- weights
+    A <- igraph::get.adjacency(g, type = 'both', attr = 'tmp')
 
-    out.deg <- strength(g, mode = 'out', weights = weights)
+    out.deg <- igraph::strength(g, mode = 'out', weights = weights)
 
   } else if (is.null(weights)) {
 
-    if ('weight' %in% edge_attr_names(g)) {
+    if ('weight' %in% igraph::edge_attr_names(g)) {
 
-      A <- get.adjacency(g, type='both', attr='weight')
-      out.deg <- strength(g, mode = 'out')
+      A <- igraph::get.adjacency(g, type='both', attr='weight')
+      out.deg <- igraph::strength(g, mode = 'out')
 
     }  else {
 
-      A <- get.adjacency(g, type='both')
-      out.deg <- degree(g, mode = 'out')
+      A <- igraph::get.adjacency(g, type='both')
+      out.deg <- igraph::degree(g, mode = 'out')
 
     }
 
   } else if (is.na(weights)) {
 
-    A <- get.adjacency(g, type='both')
-    out.deg <- degree(g, mode = 'out')
+    A <- igraph::get.adjacency(g, type='both')
+    out.deg <- igraph::degree(g, mode = 'out')
 
   } else {
 
@@ -125,7 +125,7 @@ lr_modularity <- function(g,
   G <- damping * G.temp + Tmat
 
   # get Perron vector (PageRank)
-  p.vec <- page_rank(g, damping = damping, algo = pr.algo, weights = weights)$vector
+  p.vec <- igraph::page_rank(g, damping = damping, algo = pr.algo, weights = weights)$vector
 
   # LinkRank matrix
   Q <- G * p.vec -  tcrossprod(p.vec)

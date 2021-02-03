@@ -19,4 +19,5 @@ Imports:
     corpcor,
     dplyr,
     mvtnorm,
+    igraph,
     stats
