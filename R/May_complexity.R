@@ -10,8 +10,6 @@
 #'
 #' @return numeric value
 #' @export
-#'
-#'
 May_complexity <- function(A = NULL, S = NULL, C = NULL, sigma = NULL){
 
   if(!is.null(A)){
