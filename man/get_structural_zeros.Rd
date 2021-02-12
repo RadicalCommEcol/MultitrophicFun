@@ -4,7 +4,13 @@
 \alias{get_structural_zeros}
 \title{find the structural zeros of a unipartite matrix}
 \usage{
-get_structural_zeros(A = NULL, plants = NULL, fv = NULL, herb = NULL)
+get_structural_zeros(
+  A = NULL,
+  plants = NULL,
+  fv = NULL,
+  herb = NULL,
+  dfz = NULL
+)
 }
 \arguments{
 \item{A}{interaction matrix}
@@ -14,6 +20,8 @@ get_structural_zeros(A = NULL, plants = NULL, fv = NULL, herb = NULL)
 \item{fv}{names of floral visitors}
 
 \item{herb}{names of herbivores}
+
+\item{dfz}{optional dataframe with columns "plant", "animal", "structural.zero"}
 }
 \value{
 dataframe with two columns, giving the position in A of the
@@ -22,5 +30,7 @@ structural zeros.
 \description{
 structural zeros, (or forbidden links) in this very basic definition, are combinations
 of floral visitors and herbivores. These are assumed not to interact.
-All other combinations may potentially interact.
+Furthermore, if a separate dataframe is given, these are incorporated. This is because
+I compiled inter-guild structural zeros elsewhere for the caracoles matrices,
+but need to join them with the basic ones.
 }
