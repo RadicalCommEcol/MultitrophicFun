@@ -1,6 +1,3 @@
-
-# TODO document
-
 #' get the valid names from a series of guild matrices
 #'
 #' extracts the names of sp that will form the row
@@ -35,7 +32,11 @@ get_valid_sp <- function(pp.matrix = NULL,
   # 2.1 remove invalid plants
   valid.plants.h <- valid.plants[which(valid.plants %in% rownames(ph.matrix))]
   h1 <- ph.matrix[valid.plants.h,]
-  sum.herb.int <- apply(h1,2,sum)
+  if(!is.null(dim(h1))){
+    sum.herb.int <- apply(h1,2,sum)
+  }else{
+    sum.herb.int <- h1
+  }
   valid.herbs <- names(sum.herb.int)[which(sum.herb.int != 0)]
 
   # 3 - valid fv
@@ -44,7 +45,11 @@ get_valid_sp <- function(pp.matrix = NULL,
   # 2.1 remove invalid plants
   valid.plants.fv <- valid.plants[which(valid.plants %in% rownames(pfv.matrix))]
   fv1 <- pfv.matrix[valid.plants.fv,]
-  sum.fv.int <- apply(fv1,2,sum)
+  if(!is.null(dim(fv1))){
+    sum.fv.int <- apply(fv1,2,sum)
+  }else{
+    sum.fv.int <- fv1
+  }
   valid.fv <- names(sum.fv.int)[which(sum.fv.int != 0)]
 
   return(list(valid.plants,valid.herbs,valid.fv))
