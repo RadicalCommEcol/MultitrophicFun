@@ -23,7 +23,7 @@ Omega_bootstrap <- function(alpha, replicates = 1e2) {
   }
 
   f <- function(m) class(try(solve(t(m) %*% m,tol = 1e-17),
-                             silent = T)) == "matrix"
+                             silent = T))[[1]] == "matrix"
 
   S <- nrow(alpha)
   solvable <- f(alpha)

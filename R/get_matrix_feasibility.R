@@ -21,7 +21,7 @@ get_matrix_feasibility <- function(A = NULL,
 
   # is A invertible?
   f <- function(m) class(try(solve(t(m) %*% m),
-                             silent = T)) == "matrix"
+                             silent = T))[[1]] == "matrix"
   # the operation fails, A is not invertible
   if (f(A) == FALSE) {
 
