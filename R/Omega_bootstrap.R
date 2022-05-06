@@ -28,7 +28,7 @@ Omega_bootstrap <- function(alpha, replicates = 1e2) {
   S <- nrow(alpha)
   solvable <- f(alpha)
   if (!solvable) {
-    return(0)
+    return(NA_real_)
   }
   else {
     Sigma <- solve(t(alpha) %*% alpha,tol = 1e-17)
