@@ -34,7 +34,7 @@ get_overlap_matrix <- function(A, mask, quant = FALSE, relative.diag = FALSE){
         # second, sum of the minimums (min number of shared visits)
         for(i in 1:nrow(visits_matrix)){
             for(j in 1:ncol(visits_matrix)){
-                if(i ==j){
+                if(i == j){
                     visits_matrix[i,j] <- colSums(A)[i]
                 }else{
                     # only selected columns
