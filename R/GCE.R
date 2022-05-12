@@ -185,7 +185,7 @@ GCE <- function(g, directed = FALSE, normalised = TRUE, weights = NULL,
         g <- igraph::simplify(g) #edge.attr.comb = list(
           # "weight" = "sum")
           # "length" = "min_na_rm")
-        )
+        # )
         # igraph::E(g)$weight_inv <- 1. / igraph::E(g)$weight
         # igraph::E(g)$length_inv <- 1. / igraph::E(g)$length
 
