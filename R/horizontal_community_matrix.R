@@ -1,12 +1,19 @@
-# builds an interaction matrix with different parameters
-# S = richness
-# c = connectance
-# tau = inverse of kurtosis (tau ~1.5 gives kurtosis ~3 for S=25)
-# see https://statisticaloddsandends.wordpress.com/2019/04/15/the-sinh-arcsinh-normal-distribution/
-# min.diag.dom = the minimum diagonal dominance wanted in each row
-# restricted.positive = whether interactions are only >0 or not
-# int.mean = mean of interaction strength (taken from a normal distribution)
-# ind.sd = standard deviation of interaction strength
+
+#' Create a matrix for a horizontal community network
+#'
+#' @param S richness
+#' @param c connectance
+#' @param tau inverse of kurtosis (tau ~1.5 gives kurtosis ~3 for S=25)
+#' see https://statisticaloddsandends.wordpress.com/2019/04/15/the-sinh-arcsinh-normal-distribution/
+#' @param min.diag.dom the minimum diagonal dominance wanted in each row
+#' @param restricted.positive whether interactions are only >0 or not
+#' @param int.mean mean of interaction strength (taken from a normal distribution)
+#' @param int.sd standard deviation of interaction strength
+#'
+#' @return square matrix
+#' @export
+#'
+#' @examples
 horizontal_community_matrix <- function(S = 5,
                                         c = 0.5,
                                         tau = 1.5,

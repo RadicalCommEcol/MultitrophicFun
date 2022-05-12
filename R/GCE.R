@@ -1,5 +1,6 @@
-#' @title Global Communication Efficiency
-#' @description The average inverse shortest path length is a measure known as
+#' Global Communication Efficiency
+#'
+#' The average inverse shortest path length is a measure known as
 #'    the global efficiency (see Latora and Marchiori, 2001).
 #'    We implement the global communication efficiency (GCE) for weighted
 #'    networks and propose a new normalisation method for the GCE.
@@ -20,7 +21,7 @@
 #'    \deqn{E(g_{ideal}) = \frac{1}{N} \sum_{i \in V} \frac{\sum_{j \in V,i \neq j} l_{ij}}{N - 1}.}
 #'    The normalised communication efficiency is then given by
 #'    \deqn{GCE(g)=\frac{E(g)}{E(g_{ideal})}}
-#' @param g a network.
+#' @param g a network object from igraph.
 #' @param directed logical, if the directed network has to be considered.
 #'    If FALSE (default) the network is taken as undirected.
 #' @param normalised logical, default TRUE.
@@ -62,7 +63,6 @@
 #'                networks. \url{arxiv}}
 #'    }
 #' @examples
-#' library(intsegration)
 #' library(igraph)
 #' karate <- make_graph("zachary")
 #' GCE(karate, directed = F)
