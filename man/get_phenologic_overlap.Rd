@@ -7,7 +7,7 @@
 get_phenologic_overlap(sp.data)
 }
 \arguments{
-\item{sp.data}{dataframe with the following columns: sp.ID, order, year,
+\item{sp.data}{dataframe with the following columns: ID, year,
 min.month, min.day, max.month, max.day.
 This dataframe can be built from the function 'filter_sp_taxonomy_phenology'}
 }

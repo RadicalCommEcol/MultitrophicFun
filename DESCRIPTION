@@ -20,4 +20,5 @@ Imports:
     dplyr,
     mvtnorm,
     igraph,
-    stats
+    stats,
+    gamlss.dist
