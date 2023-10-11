@@ -4,6 +4,7 @@
 #'
 #' @param interaction.matrix interaction matrix
 #' @param quant whether to calculate quantitative connectance after LDq' in Banasek-Richter et al. 2009
+#' @param diago whether to include the diagonal links (only in unipartite matrices makes sense)
 #' @param structural_zeros optional dataframe or matrix with two columns, giving 1) the rows and 2) the columns
 #' of positions which are structural zeros (or 'forbidden links') that should not be considered
 #' in the calculation
@@ -12,6 +13,7 @@
 #' @export
 connectance <- function(interaction.matrix,
                         quant = FALSE,
+                        diago = FALSE,
                         structural_zeros = NULL){
 
   # auxiliary function
@@ -38,7 +40,12 @@ connectance <- function(interaction.matrix,
   # substract structural zeros
   sz <- ifelse(!is.null(structural_zeros),nrow(structural_zeros),0)
 
-  den <- nrow(interaction.matrix) * ncol(interaction.matrix) - sz
+  if(diago){
+    den <- nrow(interaction.matrix) * ncol(interaction.matrix) - sz
+  }else{
+    den <- nrow(interaction.matrix) * ncol(interaction.matrix) - sz -
+      nrow(interaction.matrix)
+  }
 
   if(quant){
     # after LDq' in Banasek-Richter et al. 2009
